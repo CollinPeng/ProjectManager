@@ -1,0 +1,81 @@
+.full {
+    height: 95%;
+}
+
+.login-body {
+    background-color: #0E6560;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-panel {
+    width: 400px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px 1px #888;
+    border-radius: 10px;
+    padding: 30px;
+}
+.panel-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555;
+    text-shadow: 1px 1px #CCC;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.panel-body {
+    margin-top: 30px;
+}
+.form-group>label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #555;
+}
+.form-control {
+    width: calc(100% - 20px);
+    padding: 10px;
+    display: block;
+    outline: none;
+    margin: 5px 0;
+    border: 1px solid #1f6f8b;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.rember-register {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.rember-register label {
+    font-size: 14px;
+    color: #555;
+}
+.form-group a{
+    font-size: 14px;
+    text-decoration: none;
+}
+.btn {
+    padding: 10px 0;
+    margin: 0;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+}
+.btn-full {
+    width: 100%;
+}
+.btn-success {
+    background-color: #00AE62;
+    border-color: #00AE62;
+    color: #FFF;
+}
+.btn-success
