@@ -9,6 +9,10 @@ $app->get('/login', AuthenticateController::class . ':loginAction')
 $app->get('/register', AuthenticateController::class . ':registerAction')
     ->setName('register');
 
+// 处理注册逻辑
+$app->post('/register', AuthenticateController::class . ':registerHandlerAction')
+    ->setName('register_handler');
+
 $app->group('', function (\Slim\Routing\RouteCollectorProxy $group) {
     // 退出登录
     $group->get('/logout', AuthenticateController::class . ':logoutAction')
