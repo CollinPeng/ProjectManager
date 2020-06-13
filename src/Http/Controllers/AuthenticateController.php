@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Libs\CommonTools;
 use App\Models\UserModel;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Psr7\Response;
@@ -37,6 +38,40 @@ class AuthenticateController extends Controller
             $this->twig->render('authenticate/login.twig')
         );
 
+        return $response;
+    }
+
+    public function loginHandlerAction(ServerRequestInterface $request): ResponseInterface
+    {
+        $body = $request->getParsedBody();
+        $response = new Response();
+        if (empty($body['identify'])) {
+            $response->getBody()->write(CommonTools::alert('请输入用户名或者邮箱地址', '/login'));
+            return $response;
+        }
+
+        if (empty($body['password'])) {
+            $response->getBody()->write(CommonTools::alert('请输入密码', '/login'));
+            return $response;
+        }
+
+        if (!$this->userModel->usernameExists($body['identify']) && !$this->userModel->emailExists($body['identify'])) {
+            $response->getBody()->write('输入的用户不存在', '/login');
+            return $response;
+        }
+
+        $res = $this->userModel->getByUserNameOrEmail($body['identify']);
+        $pasword = md5($body['password'] . $res->password_salt);
+
+        if ($pasword === $res->password) {
+            $_SESSION['user_id'] = $res->id;
+            unset($res->password);
+            $_SESSION['user'] = $res;
+            $response->getBody()->write(CommonTools::alert('登录成功', '/index'));
+            return $response;
+        }
+
+        $response->getBody()->write(CommonTools::alert('密码错误', '/login'));
         return $response;
     }
 

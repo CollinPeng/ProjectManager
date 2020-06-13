@@ -55,4 +55,15 @@ class UserModel extends BaseModels
 
         return false;
     }
+
+    public function getByUserNameOrEmail(string $identify): \stdClass
+    {
+        $res = $this->query
+            ->table($this->table)
+            ->where('username', '=', $identify)
+            ->orWhere('email', '=', $identify)
+            ->find('password_salt');
+
+        return $res;
+    }
 }
