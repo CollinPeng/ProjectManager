@@ -24,4 +24,16 @@ class AuthenticateController extends Controller
 
         return $response;
     }
+
+    /**
+     * 退出登录
+     * @return ResponseInterface
+     */
+    public function logoutAction(): ResponseInterface
+    {
+        $response = new Response();
+        $response->getBody()->write('退出登录');
+
+        return $response;
+    }
 }
