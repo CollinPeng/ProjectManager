@@ -36,4 +36,21 @@ class AuthenticateController extends Controller
 
         return $response;
     }
+
+    /**
+     * 注册页面
+     *
+     * @return ResponseInterface
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function registerAction(): ResponseInterface
+    {
+        $response = new Response();
+        $response->getBody()->write(
+            $this->twig->render('authenticate/register.twig')
+        );
+        return $response;
+    }
 }
